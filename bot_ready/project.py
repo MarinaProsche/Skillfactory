@@ -35,7 +35,7 @@ def convert(message: telebot.types.Message):
         bot.reply_to(message, f'Не удалось обработать команду\n{e}')
     else:
         text = f'Цена {amount} {quote} в {base} равна {last_price}'
-        bot.send_message(message.chat.id, answer)
+        bot.send_message(message.chat.id, text)
 
 bot.polling()
 
