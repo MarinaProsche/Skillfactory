@@ -1,0 +1,14 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+"Новость"
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+<h1>{{ post.head_post }}</h1>
+<hr>{{ post.type_post }}</hr>
+<hr>{{ post.text_post| censor }}</hr>
+<hr>{{ post.date_post }}</hr>
+{% endblock content %}
