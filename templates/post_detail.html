@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load i18n %}
+
+{% block title %}
+"Новость"
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+    <h1>{{ post.head_post }}</h1>
+    <hr>{{ post.type_post }}
+    <hr>{{ post.text_post| censor }}
+    <hr>{{ post.date_post }}
+        {% for v in post.cathegories.all %}
+                <h5>{{ v.cathegory_name }}</h5>
+        {% endfor %}
+
+
+        <h5>
+        {% for cat in cathegory %}
+            <div>
+                <a href="{% url 'subscribe' cat.cathegory %}">{{ cat.cathegory__category }}</a>
+
+                    {% if cat.cathegory not in subscribed %}
+                        | <button><a href="{% url 'subscribe' cat.cathegory %}">{% translate "Subscribe" %}</a></button>
+
+                {% endif %}
+            </div>
+        {% endfor %}
+        </h5>
+
+
+
+
+#{% if is_not_subscriber %}
+    #<button> <a href= "{% url 'subscribe' v.id %}"> Подписаться на новости категории</a> </button>
+#{% endif %}
+
+{% endblock content %}
